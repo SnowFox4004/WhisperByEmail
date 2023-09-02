@@ -18,6 +18,7 @@ TOAST_ICON_PATH, = utils.load_settings(['TOAST_ICON_PATH'])
 
 
 MAIL_USER, ADMIN_ACCOUNT = utils.load_settings(['MAIL_USER', 'ADMIN_ACCOUNT'])
+MODEL_NAME = utils.load_settings(['MODEL_NAME'])
 
 Toast = win10toast.ToastNotifier()
 Toast.show_toast(
@@ -26,7 +27,7 @@ Toast.show_toast(
 logger.add(f'./logs/{datetime.datetime.now().strftime("%Y%m%d_%H-%M-%S")}.log')
 
 
-model = whisper.load_model('medium')
+model = whisper.load_model(MODEL_NAME)
 
 
 def program_exit():

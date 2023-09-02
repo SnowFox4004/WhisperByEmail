@@ -1,6 +1,7 @@
 {
     "IMAP_SERVER": "",
     "SMTP_HOST": "",
+    "MODEL_NAME": "large",
     "MAIL_USER": "",
     "MAIL_PASS": "",
     "WHITE_LIST": [

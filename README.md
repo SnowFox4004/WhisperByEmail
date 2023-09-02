@@ -21,7 +21,8 @@
       - `SMTP_HOST`: 邮箱 smtp 服务器地址
       - `MAIL_USER`: 接收并发送邮件的用户名 (如`114514@1919810.com`)
       - `MAIL_PASS`: 邮箱 **授权码** 
-      - `WHITE_LIST`: 白名单列表 (目前仅支持使用白名单)
+      - `MODEL_NAME`: 使用的whisper模型， 默认为 `large`
+      - `WHITE_LIST`: 白名单**邮箱用户**列表 (目前仅支持使用白名单)
       - `ADMIN_ACCOUNT`: 管理员邮箱， 非管理员使用时会向管理员邮箱发送提示
       - `TOAST_ICON_PATH`(可选): 发送 win10 Toast通知时的图标，可不填， 默认为`terminal.ico`
    3. 启动`邮件日记.py`
