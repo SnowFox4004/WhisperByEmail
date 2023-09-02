@@ -1,0 +1,4 @@
+loguru
+imapclient
+stable-ts
+win10toast
