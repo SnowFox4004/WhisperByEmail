@@ -1,0 +1,11 @@
+{
+    "IMAP_SERVER": "",
+    "SMTP_HOST": "",
+    "MAIL_USER": "",
+    "MAIL_PASS": "",
+    "WHITE_LIST": [
+        
+    ],
+    "ADMIN_ACCOUNT": "",
+    "TOAST_ICON_PATH": "terminal.ico"
+}
