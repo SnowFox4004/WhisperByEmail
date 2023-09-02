@@ -18,7 +18,7 @@ TOAST_ICON_PATH, = utils.load_settings(['TOAST_ICON_PATH'])
 
 
 MAIL_USER, ADMIN_ACCOUNT = utils.load_settings(['MAIL_USER', 'ADMIN_ACCOUNT'])
-MODEL_NAME = utils.load_settings(['MODEL_NAME'])
+MODEL_NAME, = utils.load_settings(['MODEL_NAME'])
 
 Toast = win10toast.ToastNotifier()
 Toast.show_toast(
@@ -115,7 +115,7 @@ def reconize_audio(id, subject):
             logger.success(f"邮件编号 {id} 语音识别 成功")
             result_feedback(id, file, Email_Info[id]['sender'])
             # open(path_to+subject+'.txt', 'w+', encoding='utf-8').write(subject)
-        except RuntimeError as err:
+        except Exception as err:
             logger.error(err)
             logger.error(path_to+file)
             # logger.error(os.listdir('.'))

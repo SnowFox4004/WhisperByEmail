@@ -4,12 +4,15 @@ from email.header import decode_header
 from email.parser import Parser
 
 from imapclient import IMAPClient
+from datetime import date
 from loguru import logger
 
 import utils
 
 IMAP_SERVER, MAIL_USER, MAIL_PASS, WHITE_LIST = utils.load_settings(
     ['IMAP_SERVER', 'MAIL_USER', 'MAIL_PASS', 'WHITE_LIST'])
+
+DATE_SINCE, = utils.load_settings(['DATE_SINCE'])
 
 
 def safe_filename(filename: str) -> str:
@@ -85,7 +88,7 @@ def get_email_content(client: IMAPClient, messages):
 
         emails[email_id] = (subject, sender)
         if sender not in WHITE_LIST:
-            logger.critical("发现位于白名单外用户，跳过")
+            logger.critical(f"发现位于白名单外用户 {sender} ，跳过")
             continue
 
         # 获取附件
@@ -155,4 +158,4 @@ def get_email_content(client: IMAPClient, messages):
 if __name__ == '__main__':
     client = login()
 
-    get_email_content(client, client.search())
+    get_email_content(client, client.search([u"SINCE", date(*DATE_SINCE)]))
