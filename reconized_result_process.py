@@ -1,5 +1,4 @@
 import stable_whisper as whisper
-from loguru import logger
 
 
 def plain_text_result(result: whisper.WhisperResult):

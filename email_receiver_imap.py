@@ -1,15 +1,11 @@
-import base64
 import os
-from datetime import date
 from email import message_from_bytes
 from email.header import decode_header
 from email.parser import Parser
-from pprint import pformat, pprint
 
-import pytz
 from imapclient import IMAPClient
 from loguru import logger
-from tnefparse.tnef import TNEF
+
 import utils
 
 IMAP_SERVER, MAIL_USER, MAIL_PASS, WHITE_LIST = utils.load_settings(
