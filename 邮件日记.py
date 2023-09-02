@@ -18,7 +18,7 @@ TOAST_ICON_PATH, = utils.load_settings(['TOAST_ICON_PATH'])
 
 
 MAIL_USER, ADMIN_ACCOUNT = utils.load_settings(['MAIL_USER', 'ADMIN_ACCOUNT'])
-MODEL_NAME, = utils.load_settings(['MODEL_NAME'])
+MODEL_NAME, DATE_SINCE = utils.load_settings(['MODEL_NAME', 'DATE_SINCE'])
 
 Toast = win10toast.ToastNotifier()
 Toast.show_toast(
@@ -151,7 +151,7 @@ def check_emails():
     # 若rec_cli 因挂起时间过长自动登出则重新登录
     try:
         rec_cli = email_receiver_imap.login()
-        for msg in rec_cli.search():
+        for msg in rec_cli.search([u'SINCE', datetime.date(*DATE_SINCE)]):
             if Email_Info.get(str(msg)):
                 continue
 
@@ -205,12 +205,19 @@ if __name__ == '__main__':
     # 每20分钟检测一次新邮件
     while True:
         new_email = check_emails()
+
+        save_info()
+        Email_Info = load_info()
+
+        new_email = [str(eid) for eid in new_email]
         # print(new_email)
         for em in new_email:
             # print(em)
-            reconize_audio(em, Email_Info[em]['title'])
-
-            logger.success(f"识别邮件 {em} 成功")
+            _ = reconize_audio(em, Email_Info[em]['title'])
+            if _ != -1:
+                logger.success(f"识别邮件 {em} 成功")
+            else:
+                logger.warning(f"邮件 {em} 不含有可识别附件")
 
             Email_Info[em]['reconized'] = True
             save_info()

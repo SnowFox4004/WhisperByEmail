@@ -83,6 +83,7 @@ def get_email_content(client: IMAPClient, messages):
         sender = envelope.sender[0]
         # logger.info(f'{sender.mailbox}@{sender.host}')
         sender = sender.mailbox.decode() + '@' + sender.host.decode()
+        sender = sender.lower()
 
         logger.info(f"\t邮件标题: {subject}")
 
