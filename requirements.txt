@@ -1,3 +1,4 @@
+wheel
 loguru
 imapclient
 stable-ts
