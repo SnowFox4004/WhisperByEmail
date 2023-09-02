@@ -1,5 +1,6 @@
 wheel
 loguru
 imapclient
+soundFile
 stable-ts
 win10toast
